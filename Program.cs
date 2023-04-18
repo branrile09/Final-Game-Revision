@@ -20,20 +20,46 @@ namespace Final_Game_Revision
         static void Main(string[] args)
         {
             //declare and start a new thread that will manage the AI characters
-            Multiplayer();
+            int playerCount = 0;
+            do
+            {
+                Console.WriteLine("how many players?(0-2)");
+                try
+                {
+                    playerCount = Convert.ToInt32(Console.ReadLine());
+                    break;
+                }
+                catch
+                { 
+                
+                }
+               
+            } while (true);
+
+            Console.Clear();
+            if (playerCount > 2)
+            {
+                playerCount = 2;
+            }
+            else if (playerCount < 0)
+            {
+                playerCount = 0;
+            }
+
+
+            Multiplayer(playerCount);
             //SinglePlayer();
 
         }
-
-        // we need to fix score point
+               
 
 
         //we need to get multiplayer to work
-        static void Multiplayer()
+        static void Multiplayer(int playerCount)
         {
             InGame = true;
             aiManager = new AI_Manager();
-            pManager = new Player_Manager(0);
+            pManager = new Player_Manager(playerCount);
 
             Thread GameRender = new Thread(() => DisplayMazeThread(120));
             GameRender.Start();

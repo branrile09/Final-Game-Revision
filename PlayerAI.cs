@@ -15,7 +15,6 @@ namespace Final_Game_Revision
         private Thread AI_Thread;
         private int frequency = 200;
         int lastDirection = 0;
-
         int playerID;
 
         bool inGame = true;
